@@ -1,0 +1,87 @@
+﻿@*@model Project_Web.Data.Category*@
+@model List<Project_Web.Data.Category>
+<form>
+    @for (int cate = 0; cate < Model.Count; cate++)
+    {
+        @if (cate % 2 == 0)
+        {
+            <ul id="list">
+
+                <li class="color"><a href="#">@Model[cate].Name</a></li>
+            </ul>
+        }
+        else
+        {
+            <ul id="list">
+                <li ><a href="#">@Model[cate].Name</a></li>
+            </ul>
+        }
+
+
+    }
+</form>
+
+
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+@*<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                @Model.Id
+            </td>
+            <td>
+                @Model.Name
+            </td>
+            <td>
+                @Model.Description
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
+
+@*
+<div id="sidebar">
+    
+
+    <img src="~/assets/images/title1.gif" alt="" width="174" height="30" /><br>
+    <ul id="list">
+        <li class="color"><a href="#">Illum secundum</a></li>
+        <li><a href="#">Tamen causa ut diam</a></li>
+        <li class="color"><a href="#">Appellatio vel hos autem</a></li>
+        <li><a href="#">Consequat</a></li>
+        <li class="color"><a href="#">Nibh valde tincidunt</a></li>
+        <li><a href="#">Illum secundum</a></li>
+        <li class="color"><a href="#">Appellatio vel</a></li>
+        <li><a href="#">Illum secundum</a></li>
+        <li class="color"><a href="#">Nibh valde</a></li>
+        <li><a href="#">Consequat</a></li>
+        <li class="color"><a href="#">Nibh valde tincidunt</a></li>
+        <li><a href="#">Appellatio vel</a></li>
+        <li class="color"><a href="#">Illum secundum</a></li>
+        <li><a href="#">Consequat</a></li>
+        <li class="color"><a href="#">Appellatio vel</a></li>
+        <li><a href="#">Illum secundum</a></li>
+        <li class="color"><a href="#">Nibh valde</a></li>
+    </ul>
+</div>*@
+

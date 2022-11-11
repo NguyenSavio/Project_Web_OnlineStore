@@ -1,0 +1,58 @@
+﻿@model Project_Web.Data.Product
+
+@*<form>
+    @for (int pro = 0; pro < Model.Count; pro++)
+    {
+        @if (pro % 2 == 0)
+        {
+            <ul id="list">
+
+                <li class="color"><a href="#">@Model[pro].Name</a></li>
+            </ul>
+        }
+        else
+        {
+            <ul id="list">
+                <li ><a href="#">@Model[pro].Name</a></li>
+            </ul>
+        }
+
+
+    }
+</form>*@
+
+
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                @Model.Id
+            </td>
+            <td>
+                @Model.Name
+            </td>
+            <td>
+                @Model.Description
+            </td>
+        </tr>
+    </tbody>
+</table>
