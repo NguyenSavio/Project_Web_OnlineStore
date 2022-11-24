@@ -18,6 +18,9 @@ namespace Project_Web.Components
         {
             Product pro = await _dbContext.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
 
+
+            //Product? product = await _dbContext.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+            //var pro = product;
             return View(pro);
         }
     }

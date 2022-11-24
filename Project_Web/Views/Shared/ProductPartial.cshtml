@@ -16,7 +16,7 @@
             <img width="150" height="150" src="@Model.Image">
 
         <p style="text-align:center">@Model.Name</p>
-        <span>@Model.Price</span>  @*<a class ="view" asp-controller="Product" asp-action="Detail" asp-route-id="@p.Id" >Detail</a>*@
+        <span>@Model.Price</span>  <a class ="view" asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id" >Detail</a>
 
     <a href="#" class="buy">Buy this Product</a>
     </div>

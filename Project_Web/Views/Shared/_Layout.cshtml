@@ -11,14 +11,21 @@
     
     <div id="header">
         <div id="header_inside">
-            <img src="~/assets/images/header.jpg" alt="setalpm" width="auto" height="auto" border="0" usemap="#Map" /><br />
+            @*asp-controller="home" asp-action="index*@@*usemap="#Map"*@
+            <a href='@Url.Action("Index", "Home")'>
+                <img src="~/assets/images/header.jpg" alt="setalpm" width="auto" height="auto" border="0" /> 
+            </a>
+            <br />
+
             <ul id="menu">
-                <li><a href="index.html" class="but1_active">Home Page</a></li>
+                <li><a asp-controller="Home" asp-action="Index" class="but1_active">Home Page</a></li>
                 <li><a href="index2.html" class="but2">About Us</a></li>       
                 <li><a href="index2.html" class="but3">My Account</a></li>
                 <li><a href="index2.html" class="but4">Contacts</a></li>
                 <partial name="_RegisterPartial.cshtml" />
                 <partial name="_LoginPartial.cshtml" />
+                @*@Html.Partial("_RegisterPartial")
+                @Html.Partial("_LoginPartial")*@
             </ul>
         </div>
     </div>
@@ -31,17 +38,21 @@
 
             <div id="sidebar">
                 <ul id="list">
-                    <h3> Categories</h3>
+                    @*<h3> Categories</h3>*@
+                    <img src="~/assets/images/title1.gif" alt="" width="174" height="30" />
+                    <br>
+                    <ul id="list">
                     <vc:Category></vc:Category>
+                    </ul>
                 </ul>
 
 
-                <ul id="list">
+                @*<ul id="list">
                     <h3>Product detail</h3>
                     <vc:Product-Detail id="3"> </vc:Product-Detail>
-                </ul>
+                </ul>*@
 
-                <img src="~/assets/images/title1.gif" alt="" width="174" height="30" /><br>
+                @*<img src="~/assets/images/title1.gif" alt="" width="174" height="30" /><br>
                 <ul id="list">
                     <li class="color"><a href="#">Illum secundum</a></li>
                     <li><a href="#">Tamen causa ut diam</a></li>
@@ -60,7 +71,7 @@
                     <li class="color"><a href="#">Appellatio vel</a></li>
                     <li><a href="#">Illum secundum</a></li>
                     <li class="color"><a href="#">Nibh valde</a></li>
-                </ul>
+                </ul>*@
             </div>
             <div id="main_block">
 
@@ -75,7 +86,7 @@
 
     <div id="footer">
         <div id="footer_inside">
-            <ul class="footer_menu">
+            <ul class="footer_menu" style="margin-top:0px">
                 <li><a href="index.html">Home Page</a>|</li>
                 <li><a href="index2.html">About Us</a>|</li>
                 <li><a href="index2.html">News &amp; Events</a>|</li>

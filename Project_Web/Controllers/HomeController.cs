@@ -2,6 +2,9 @@
 using Project_Web.Data;
 using Project_Web.Models;
 using System.Diagnostics;
+using System.Xml.Linq;
+
+
 
 namespace Project_Web.Controllers
 {
@@ -23,15 +26,16 @@ namespace Project_Web.Controllers
             return View(proList);
         }
 
+        public IActionResult CategoryDetail()
+        {
+           
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult Index2()
-        {
-            return View();
-        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

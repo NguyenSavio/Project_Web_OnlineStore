@@ -31,8 +31,8 @@
             <img width="150" height="150" src="@p.Image">
 
 		<p style="text-align:center">@p.Name</p>
-        <span>@p.Price</span><a class ="view" asp-controller="Product" asp-action="Detail" asp-route-id="@p.Id" >Detail</a>
-
+        <span>@p.Price</span> <a class ="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@p.Id" >Details</a>
+        @*@Html.ActionLink("Detail","ProductDetail","Product",new object { },new { @class = "View"})*@
     <a href="#" class="buy">Buy this Product</a>
     </div>
    // </div>
