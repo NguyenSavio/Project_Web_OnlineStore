@@ -1,0 +1,34 @@
+﻿@using System.Globalization
+
+
+
+@model List<Project_Web.Data.Product>;
+
+<div>
+   @* namespace Project_Web.Views.Shared.Partial
+@using Project_Web.Data;
+@model Project_Web.Data.Product*@
+
+@foreach(var product in Model){
+    <li>
+        <div class="item">
+                <img src="@product.Image" width="150" height="150">
+                <p style="text-align:center">@product.Name</p>
+                <span>@product.Price</span> <a class="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id">Detail</a>
+                <a href="#" class="buy">Buy this Product</a>
+        </div>
+    </li>
+}
+
+
+@*<div>
+    <div class="item">
+            <img width="150" height="150" src="@Model.Image">
+
+        <p style="text-align:center">@Model.Name</p>
+        <span>@Model.Price</span>  <a class ="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@Model.Id" >Detail</a>
+
+    <a href="#" class="buy">Buy this Product</a>
+    </div>
+</div>*@
+</div>

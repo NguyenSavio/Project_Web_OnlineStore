@@ -26,11 +26,11 @@ namespace Project_Web.Controllers
             return View(proList);
         }
 
-        public IActionResult CategoryDetail()
-        {
-           
-            return View();
-        }
+        //public IActionResult CategoryDetail()
+        //{
+        //    Product product = this._Context.Products.Where(product => product.Id == id).FirstOrDefault();
+        //    return View();
+        //}
         public IActionResult Privacy()
         {
             return View();

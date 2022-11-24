@@ -8,18 +8,18 @@
 </head>
 
 <body>
-    
+
     <div id="header">
         <div id="header_inside">
             @*asp-controller="home" asp-action="index*@@*usemap="#Map"*@
             <a href='@Url.Action("Index", "Home")'>
-                <img src="~/assets/images/header.jpg" alt="setalpm" width="auto" height="auto" border="0" /> 
+                <img src="~/assets/images/header.jpg" alt="setalpm" width="auto" height="auto" border="0" />
             </a>
             <br />
 
             <ul id="menu">
                 <li><a asp-controller="Home" asp-action="Index" class="but1_active">Home Page</a></li>
-                <li><a href="index2.html" class="but2">About Us</a></li>       
+                <li><a href="index2.html" class="but2">About Us</a></li>
                 <li><a href="index2.html" class="but3">My Account</a></li>
                 <li><a href="index2.html" class="but4">Contacts</a></li>
                 <partial name="_RegisterPartial.cshtml" />
@@ -42,37 +42,18 @@
                     <img src="~/assets/images/title1.gif" alt="" width="174" height="30" />
                     <br>
                     <ul id="list">
-                    <vc:Category></vc:Category>
+                        <vc:Categories>   </vc:Categories>
                     </ul>
                 </ul>
-
+            </div>
 
                 @*<ul id="list">
-                    <h3>Product detail</h3>
-                    <vc:Product-Detail id="3"> </vc:Product-Detail>
+                <h3>Product detail</h3>
+                <vc:Product-Detail id="3"> </vc:Product-Detail>
                 </ul>*@
 
-                @*<img src="~/assets/images/title1.gif" alt="" width="174" height="30" /><br>
-                <ul id="list">
-                    <li class="color"><a href="#">Illum secundum</a></li>
-                    <li><a href="#">Tamen causa ut diam</a></li>
-                    <li class="color"><a href="#">Appellatio vel hos autem</a></li>
-                    <li><a href="#">Consequat</a></li>
-                    <li class="color"><a href="#">Nibh valde tincidunt</a></li>
-                    <li><a href="#">Illum secundum</a></li>
-                    <li class="color"><a href="#">Appellatio vel</a></li>
-                    <li><a href="#">Illum secundum</a></li>
-                    <li class="color"><a href="#">Nibh valde</a></li>
-                    <li><a href="#">Consequat</a></li>
-                    <li class="color"><a href="#">Nibh valde tincidunt</a></li>
-                    <li><a href="#">Appellatio vel</a></li>
-                    <li class="color"><a href="#">Illum secundum</a></li>
-                    <li><a href="#">Consequat</a></li>
-                    <li class="color"><a href="#">Appellatio vel</a></li>
-                    <li><a href="#">Illum secundum</a></li>
-                    <li class="color"><a href="#">Nibh valde</a></li>
-                </ul>*@
-            </div>
+               
+            
             <div id="main_block">
 
                 @RenderBody()

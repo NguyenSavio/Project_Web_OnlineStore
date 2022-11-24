@@ -1,14 +1,8 @@
-﻿@*@using Project_Web.Data*@
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
-	Layout="_Layout";
+    Layout = "_Layout";
 }
 @model List<Project_Web.Data.Product>
-@*@model Product*@
-
-
-
-
 
 
 <div class="about">
@@ -21,32 +15,51 @@
     <p>Illum secundum exerci erat plaga illum, enim, venio. Tamen causa ut diam torqueo sagaciter inhibeo si quae exerci lobortis. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. </p>
 </div>
 
+<!-- All Products -->
+<ul>
+    @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Id > 0).ToList())
+</ul>
 
 
 
-@foreach (var p in Model)
-{ //3
-   // <div id="items">
+
+
+
+
+
+
+
+
+@*@foreach (var product in Model)
+{
     <div class="item">
-            <img width="150" height="150" src="@p.Image">
+            <img width="150" height="150" src="@product.Image">
 
-		<p style="text-align:center">@p.Name</p>
-        <span>@p.Price</span> <a class ="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@p.Id" >Details</a>
-        @*@Html.ActionLink("Detail","ProductDetail","Product",new object { },new { @class = "View"})*@
+		<p style="text-align:center">@product.Name</p>
+        <span>@product.Price</span> <a class ="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id" >Details</a>
+
     <a href="#" class="buy">Buy this Product</a>
     </div>
-   // </div>
-}
+}*@
+
+
+@*@Html.ActionLink("Detail","ProductDetail","Product",new object { },new { @class = "View"})*@
 @*@{
 	var product1 = new Product() { Name ="ASdfas", Description = "asdf"};
 }*@
 
 
-@foreach(var product in Model){
+@*@foreach(var product in Model){
 <partial name= "ProductPartial" model="product"/>
-}
+}*@
 
-
+@*<div class="products">
+    <h3>Today Sales!</h3>
+    <ul>
+        @Html.Partial("../Product/_ProductPartial", Model.Where(x => x.Id > 0).ToList())
+    </ul>
+    <!-- End Products -->
+</div>*@
 
 
 

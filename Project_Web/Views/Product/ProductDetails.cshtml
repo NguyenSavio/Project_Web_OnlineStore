@@ -1,11 +1,17 @@
-﻿@model Project_Web.Models.ProductModel
+﻿@*@model Project_Web.Models.Product.Model*@
 @*@Model.Id
 @Model.Name
 @Model.Description*@
 @*@model List<Project_Web.Models.ProductModel>*@
 
-<div>
-    <h4>Product</h4>
+@{
+    ViewData["Title"] = "Details of a Product";
+}
+
+@model Project_Web.Data.Product
+
+@*<div>
+    <h4>Details of a Product</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -21,10 +27,38 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.ShortDesc)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.ShortDesc)
         </dd>
     </dl>
+</div>
+*@
+<h2>Details of a Product</h2>
+<div id="main_block" class="style1">
+    <div id="item">
+        <h4>@Html.DisplayFor(model => model.Name)</h4><br />
+        <div class="big_view">
+            <img src="@Html.DisplayFor(model => model.Image)" alt="" width="311" height="319" /><br />
+            <span>@Html.DisplayFor(model => model.Price)</span>
+        </div>
+        <div class="scroll">
+            <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
+            <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
+            <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
+            <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
+            <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
+            <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
+        </div>
+    </div>
+    <div class="description">
+        <p>
+            <strong>@Html.DisplayFor(model => model.ShortDesc)</strong><br />
+
+        </p>
+        <p>
+            <a href="#" class="view">View</a><a href="#" class="buy">Buy this Product</a>
+        </p>
+    </div>
 </div>

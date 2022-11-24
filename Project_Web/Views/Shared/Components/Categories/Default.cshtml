@@ -1,28 +1,33 @@
 ﻿@*@model Project_Web.Data.Category*@
 @model List<Project_Web.Data.Category>
-<form>
+
+@*<li>
     @for (int cate = 0; cate < Model.Count; cate++)
     {
         @if (cate % 2 == 0)
         {
             <ul id="list">
-
-                @*<li class="color"> @Html.ActionLink("","CategoryDetail","Home")<a>@Model[cate].Name</a></li>*@
-                <li class="color"> @Html.ActionLink(@Model[cate].Name,"CategoryDetail","Home")</li>
+                <li><a href="/Product/CategoryProduct/@Model.Id">@cate.Name</a></li>
             </ul>
         }
         else
         {
             <ul id="list">
-                <li ><a href="#">@Model[cate].Name</a></li>
+                <li><a href="/Product/CategoryProduct/@cate.Id">@cate.Name</a></li>
             </ul>
         }
+    }   
+</li>
+*@
+<ul>
+@foreach(var cate in Model)
+        {
+            <li>@cate.Name</li>
+        }
+    </ul>
 
-
-    }
-</form>
-
-
+@*<li class="color"> @Html.ActionLink("","CategoryDetails","Category")<a>@Model[cate].Name</a></li>
+                <li><a href="/Product/CategoryProduct/@cate.Id">@cate.Name</a></li>*@
 
 @*<p>
     <a asp-action="Create">Create New</a>
