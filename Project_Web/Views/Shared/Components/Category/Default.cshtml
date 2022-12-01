@@ -1,5 +1,35 @@
 ﻿@*@model Project_Web.Data.Category*@
 @model List<Project_Web.Data.Category>
+<link rel="stylesheet" type="text/css" href="~/assets/style.css" />
+
+@*@foreach(var cate in Model)
+{
+    <li>
+        <a href="/Category/ProductsInCategory/@cate.Id">@cate.Name</a>
+    </li>
+}*@
+
+
+
+
+
+<li>
+    @for (int cate = 0; cate < Model.Count; cate++)
+    {
+        @if (cate % 2 == 0)
+        {
+        <li id="list">
+            <div><a href="/Category/ProductsInCategory/@Model[cate].Id">@Model[cate].Name</a></div>
+        </li>
+        }
+        else
+        {
+        <li id="list" class="color">
+            <div><a href="/Category/ProductsInCategory/@Model[cate].Id">@Model[cate].Name</a></div>
+        </li>
+        }
+    }
+</li>
 
 @*<li>
     @for (int cate = 0; cate < Model.Count; cate++)
@@ -7,24 +37,24 @@
         @if (cate % 2 == 0)
         {
             <ul id="list">
-                <li><a href="/Product/CategoryProduct/@Model.Id">@cate.Name</a></li>
+                <li><a href="/Product/CategoryProduct/@Model[cate].Id">@Model[cate].Name</a></li>
             </ul>
         }
         else
         {
             <ul id="list">
-                <li><a href="/Product/CategoryProduct/@cate.Id">@cate.Name</a></li>
+                <li><a href="/Product/CategoryProduct/@Model[cate].Id">@Model[cate].Name</a></li>
             </ul>
         }
-    }   
-</li>
-*@
-<ul>
-@foreach(var cate in Model)
-        {
-            <li>@cate.Name</li>
-        }
-    </ul>
+    }
+</li>*@
+
+@*<ul>
+    @foreach (var cate in Model)
+    {
+        <li>@cate.Name</li>
+    }
+</ul>*@
 
 @*<li class="color"> @Html.ActionLink("","CategoryDetails","Category")<a>@Model[cate].Name</a></li>
                 <li><a href="/Product/CategoryProduct/@cate.Id">@cate.Name</a></li>*@
@@ -67,7 +97,7 @@
 
 @*
 <div id="sidebar">
-    
+
 
     <img src="~/assets/images/title1.gif" alt="" width="174" height="30" /><br>
     <ul id="list">

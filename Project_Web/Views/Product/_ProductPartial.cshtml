@@ -1,7 +1,5 @@
 ﻿@using System.Globalization
-
-
-
+<link rel="stylesheet" type="text/css" href="~/assets/style.css" />
 @model List<Project_Web.Data.Product>;
 
 <div>
@@ -10,11 +8,11 @@
 @model Project_Web.Data.Product*@
 
 @foreach(var product in Model){
-    <li>
+    <li id="list">
         <div class="item">
-                <img src="@product.Image" width="150" height="150">
+                <a> <img src="@product.Image" width="150" height="150"></a>
                 <p style="text-align:center">@product.Name</p>
-                <span>@product.Price</span> <a class="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id">Detail</a>
+                <span>$ @product.Price </span> <a class="view" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@product.Id">Detail</a>
                 <a href="#" class="buy">Buy this Product</a>
         </div>
     </li>

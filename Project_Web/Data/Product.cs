@@ -23,6 +23,7 @@ namespace Project_Web.Data
         public string? Title { get; set; }
         public string? Alias { get; set; }
         public int? Remains { get; set; }
+        public double Rating { get; set; }
         public ICollection<OrderProduct>? OrderProducts { get; set; }
     }
 }

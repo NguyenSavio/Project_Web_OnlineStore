@@ -4,19 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using Project_Web.Data;
 using Project_Web.Models;
 
-namespace Project_Web.Components
+
+namespace Project_Web.ViewComponents
 {
     public class CategoryViewComponent : ViewComponent
     {
-        private readonly AppDbContext _dbContext;
+        private readonly AppDbContext _Context;
         public CategoryViewComponent(AppDbContext context)
         {
-            this._dbContext = context;
+            _Context = context;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            List<Category> cateList = await _dbContext.Categories.ToListAsync();
+            List<Category> cateList = await _Context.Categories.ToListAsync();
 
             return View(cateList);
         }

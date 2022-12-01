@@ -79,8 +79,8 @@ height:auto;
 }
 #list a{
 font-family:Arial, Helvetica, sans-serif;
-font-size:12px;
-color:#464646;
+font-size:11px;
+color:black; 
 text-decoration:none
 }
 #list a:visited{text-decoration:none}
@@ -89,8 +89,8 @@ text-decoration:none
 width:165px;
 padding:0 0 0 10px;
 }
-.color{
-background-color:#ECECC5
+.color {
+    background-color: #ECECC5 
 }
 #main_block{
 font-family:Arial, Helvetica, sans-serif;
@@ -167,26 +167,26 @@ padding:0 0 0 20px;
 display:block;
 float:left;
 line-height:18px;
-margin:3px 3px 0 0;
+margin:0px 3px 0 0;
 width:41px;
 text-align:center;
 background-image:url(images/view_bg.gif);
 background-position:top left;
 background-repeat:no-repeat;
-color:#fff;
+color:/*#fff*/ white ;
 text-decoration:none
 }
 .buy{
 display:block;
 float:left;
 line-height:18px;
-margin:3px 3px 0 0;
+margin:0px 3px 0 0;
 width:92px;
 text-align:center;
 background-image:url(images/buy_bg.gif);
 background-position:top left;
 background-repeat:no-repeat;
-color:#CAFF34;
+color:/*#CAFF34*/ white;
 text-decoration:none
 }
 #footer_inside{

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project_Web.Data;
 
 namespace Project_Web.Controllers
@@ -18,10 +19,14 @@ namespace Project_Web.Controllers
 			return View();
 		}
 
-        public IActionResult CategoryDetails(int? id)
+        public IActionResult ProductsInCategory(int? id)
         {
-            Category category = this._Context.Categories.Where(category => category.Id == id).FirstOrDefault();
-            return View();
+            //List<Category> categories = this._Context.Categories.ToList();
+            List<Product> products = this._Context.Products.Where(products => products.Category.Id == id).ToList();
+            ViewBag.CategoryName = this._Context.Categories.FirstOrDefault(category => id == category.Id).Name;
+            return View(products);
         }
+
+
     }
 }

@@ -1,0 +1,9 @@
+﻿@model List<Project_Web.Data.Product>
+<!-- Products -->
+<div class="products">
+    <h3>@ViewBag.CategoryName</h3>
+    <ul>
+        @Html.Partial("../Product/_ProductPartial", Model)
+    </ul>
+    <!-- End Products -->
+</div>

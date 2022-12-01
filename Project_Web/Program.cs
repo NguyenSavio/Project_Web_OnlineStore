@@ -7,8 +7,8 @@ var connectionString = builder.Configuration.GetConnectionString("Project_WebCon
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDbContext<Project_WebContext>(options =>
-    options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<Project_WebContext>(options =>
+//    options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
@@ -39,3 +39,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 app.Run();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:Admin}/{controller=Home}/{action=Index}/{id?}"
+    );
+});

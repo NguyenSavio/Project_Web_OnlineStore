@@ -21,7 +21,7 @@ namespace Project_Web.Controllers
 
         public IActionResult Index()
         {
-            //List<Category> cateList = _dbContext.Categories.ToList();
+            List<Category> cateList = _dbContext.Categories.ToList();
             List<Product> proList = _dbContext.Products.ToList();
             return View(proList);
         }
