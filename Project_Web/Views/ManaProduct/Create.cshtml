@@ -2,17 +2,51 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h1>Create Product</h1>
 
 <hr />
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+
+        @*@using (Html.BeginForm("UploadImage", "ManaProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
+        }*@
+
+        <form method="post" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
+
+            @*<form method="post" enctype="multipart/form-data" asp-controller="ManaProduct" asp-action="UploadImage">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <p>Upload image 2</p>
+                        <input class="form-control" name="files" type="file" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input class="btn btn-success" type="submit" value="Upload" />
+                    </div>
+                </div>
+            </form>*@
+
+
+            @*<form asp-controller="ManaProduct" asp-action="UploadImage" method="post" ectype="multipart/form-data">
+                <div>
+                    <label>Upload File 1</label>
+                    <input type="file" class="form-control" name="Image" />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary"> Load File</button>
+                </div>
+            </form>*@
+
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -30,7 +64,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -42,11 +76,19 @@
                 <input asp-for="Discount" class="form-control" />
                 <span asp-validation-for="Discount" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
+
+
+
+
+            @*<div class="form-group">
+            <label asp-for="Image" class="control-label"></label>
+            <input asp-for="Image" type="file" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+            </div>*@
+
+
+
+
             <div class="form-group">
                 <label asp-for="Video" class="control-label"></label>
                 <input asp-for="Video" class="form-control" />

@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+<div id="header">
+    <div id="header_inside">
+        @*@Html.ActionLink("Index","Home")*@
+        @*asp-controller="home" asp-action="index*@@*usemap="#Map"*@
+        <a asp-controller="home" asp-action="index">
+            <img src="~/assets/images/header.jpg" alt="setalpm" width="auto" height="auto" border="0" />
+        </a>
+        <br />
+
+        <ul id="menu">
+            <li><a asp-controller="Home" asp-action="Index" class="but1_active">Home Page</a></li>
+            <li><a href="/ManaProduct/Index" class="but2">Manage Products</a></li>
+            <li><a href="/ManaCategory/Index" class="but2">Manage Categories</a></li>
+            @* <li><a href="index2.html" class="but3">My Account</a></li>
+            <li><a href="index2.html" class="but4">Contacts</a></li>*@
+            <partial name="_RegisterPartial.cshtml" />
+            <partial name="_LoginPartial.cshtml" />
+            @*@Html.Partial("_RegisterPartial")
+            @Html.Partial("_LoginPartial")*@
+        </ul>
+    </div>
+</div>

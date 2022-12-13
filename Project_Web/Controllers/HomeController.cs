@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Project_Web.Data;
 using Project_Web.Models;
 using System.Diagnostics;
@@ -12,6 +13,8 @@ namespace Project_Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _dbContext;
+        private readonly object Session;
+
         public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
@@ -21,6 +24,17 @@ namespace Project_Web.Controllers
 
         public IActionResult Index()
         {
+
+            //{
+            //    if (Session["Id"] != null)
+            //    {
+            //        return View();
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction("Login");
+            //    }
+            //}
             List<Category> cateList = _dbContext.Categories.ToList();
             List<Product> proList = _dbContext.Products.ToList();
             return View(proList);
@@ -31,10 +45,10 @@ namespace Project_Web.Controllers
         //    Product product = this._Context.Products.Where(product => product.Id == id).FirstOrDefault();
         //    return View();
         //}
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Project_Web.Data;
 
 namespace Project_Web.Controllers
@@ -12,6 +13,7 @@ namespace Project_Web.Controllers
     public class ManaProductController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly object _productService;
 
         public ManaProductController(AppDbContext context)
         {
@@ -24,6 +26,51 @@ namespace Project_Web.Controllers
             var appDbContext = _context.Products.Include(p => p.Category);
             return View(await appDbContext.ToListAsync());
         }
+
+
+        public async Task<bool> UploadImage(Product product,IFormFile upload)
+        {
+            if (upload != null && upload.Length > 0)
+            {
+                var fileName = Path.GetFileName(upload.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "~/assets/images", fileName);
+                product.Image = filePath;
+                _context.Products.Add(product);
+                _context.SaveChanges();
+                using (var fileSrteam = new FileStream(filePath, FileMode.Create))
+                {
+                    await upload.CopyToAsync(fileSrteam);
+                }
+                return true;
+            }
+            return false;
+        }
+
+
+        //        [HttpPost]
+
+        //        public string SaveFile(FileUpload fileObj)
+        //        {
+        //            Product product = JsonConvert.DeserializeObject<Product>(fileObj.Product)
+
+        //if (fileObj.file.Length > 0)
+        //            {
+        //                using (var ms = new MemoryStream())
+        //                {
+        //                    fileObj.file.CopyTo(ms);
+        //                    var fileBytes = ms.ToArray();
+        //                    product.Image = fileBytes;
+        //                    product = _productService.Save(product);
+        //                    if (product.Id > 0)
+        //                    {
+        //                        return "Saved";
+        //                    }
+        //                }
+        //            }
+
+        //            return "Failed";
+        //        }
+
 
         // GET: ManaProduct/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -47,7 +94,7 @@ namespace Project_Web.Controllers
         // GET: ManaProduct/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -81,7 +128,7 @@ namespace Project_Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 

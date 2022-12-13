@@ -32,19 +32,36 @@ else
 
 
 
+
+
 @if (SignInManager.IsSignedIn(User))
 {
-    
+    @if (User.IsInRole("Administrator"))
+    {
+        <a class="but1" asp-controller="Admin" asp-action="index">For Admin</a>
+    } 
+    else
+    {
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @UserManager.GetUserName(User)!</a>
-   
- 
+        
+    }
+    <a class="but1" id="logout" asp-controller="User" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"> Logout </a>
+            
+} else{
+    <a class="but1" id="register" asp-controller="User" asp-action="Register">Register</a>
+    <a class="but1" id="login" asp-controller="User" asp-action="Login">Login</a>
+    
+}
+
+        @*<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @UserManager.GetUserName(User)!</a>
+
         <a class="but1" id="logout" asp-controller="User" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"> Logout </a>
       
 }
 else
 {
     
-        @*<a class="but1" id="login" asp-area="User" asp-page="/Login">Login</a>*@
+       
         <a class="but1" id="login" asp-controller="User" asp-action="Login">Login</a>
   
-}
+}*@
