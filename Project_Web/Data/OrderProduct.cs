@@ -10,7 +10,7 @@
         public Order? Orders { get; set; }
 
         public int ? Quantity { get; set; }
-        double? Price { get; set; }
+        public double? Price { get; set; }
 
            
     }

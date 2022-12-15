@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Project_Web.Data;
 
 namespace Project_Web.Controllers
@@ -13,11 +8,12 @@ namespace Project_Web.Controllers
     public class ManaProductController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly object _productService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ManaProductController(AppDbContext context)
+        public ManaProductController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: ManaProduct
@@ -26,51 +22,6 @@ namespace Project_Web.Controllers
             var appDbContext = _context.Products.Include(p => p.Category);
             return View(await appDbContext.ToListAsync());
         }
-
-
-        public async Task<bool> UploadImage(Product product,IFormFile upload)
-        {
-            if (upload != null && upload.Length > 0)
-            {
-                var fileName = Path.GetFileName(upload.FileName);
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "~/assets/images", fileName);
-                product.Image = filePath;
-                _context.Products.Add(product);
-                _context.SaveChanges();
-                using (var fileSrteam = new FileStream(filePath, FileMode.Create))
-                {
-                    await upload.CopyToAsync(fileSrteam);
-                }
-                return true;
-            }
-            return false;
-        }
-
-
-        //        [HttpPost]
-
-        //        public string SaveFile(FileUpload fileObj)
-        //        {
-        //            Product product = JsonConvert.DeserializeObject<Product>(fileObj.Product)
-
-        //if (fileObj.file.Length > 0)
-        //            {
-        //                using (var ms = new MemoryStream())
-        //                {
-        //                    fileObj.file.CopyTo(ms);
-        //                    var fileBytes = ms.ToArray();
-        //                    product.Image = fileBytes;
-        //                    product = _productService.Save(product);
-        //                    if (product.Id > 0)
-        //                    {
-        //                        return "Saved";
-        //                    }
-        //                }
-        //            }
-
-        //            return "Failed";
-        //        }
-
 
         // GET: ManaProduct/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -94,26 +45,60 @@ namespace Project_Web.Controllers
         // GET: ManaProduct/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
             return View();
         }
 
         // POST: ManaProduct/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ShortDesc,Description,CategoryId,Price,Discount,Image,Video,DateCreate,DateUpdate,BestSellers,HomeFlag,Active,Title,Alias,Remains,Rating")] Product product)
+        public async Task<IActionResult> Create(Product product)
         {
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             if (ModelState.IsValid)
             {
+
+                product.Name = product.Name.ToLower().Replace(" ", "-");
+
+                var name = await _context.Products.FirstOrDefaultAsync(p => p.Name == product.Name);
+                if (name != null)
+                {
+                    ModelState.AddModelError("", "The product already exists.");
+                    return View(product);
+                }
+
+                if (product.ImageUpload != null)
+                {
+                    string uploadsDir = Path.Combine(_webHostEnvironment.WebRootPath, "~/assets/images/");
+                    string ImageName = Guid.NewGuid().ToString() + "_" + product.ImageUpload.FileName;
+
+                    string filePath = Path.Combine(uploadsDir, ImageName);
+                    FileStream fileStream = new FileStream(filePath, FileMode.Create);
+                    await product.ImageUpload.CopyToAsync(fileStream);
+
+                    fileStream.Close();
+
+                    product.Image = ImageName;
+                }
                 _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                TempData["Success"] = "Product Exist";
+                return RedirectToAction("Index");
+
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
             return View(product);
+            //ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
+
         }
+
+
+
+
+
 
         // GET: ManaProduct/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -128,7 +113,7 @@ namespace Project_Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
             return View(product);
         }
 
@@ -137,7 +122,7 @@ namespace Project_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ShortDesc,Description,CategoryId,Price,Discount,Image,Video,DateCreate,DateUpdate,BestSellers,HomeFlag,Active,Title,Alias,Remains,Rating")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ShortDesc,Description,CategoryId,Price,Discount,Image,Video,DateCreate,DateUpdate,BestSellers,Remains,Rating")] Product product)
         {
             if (id != product.Id)
             {

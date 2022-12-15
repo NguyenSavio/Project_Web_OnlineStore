@@ -5,29 +5,75 @@
 @model List<Project_Web.Data.Product>
 
 
-<div class="about">
-    <img src="~/assets/images/title2.gif" alt="" width="191" height="30" /><br />
-    <p>Illum secundum exerci erat plaga illum, enim, venio. Tamen causa ut diam torqueo sagaciter inhibeo si quae exerci lobortis. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. Nibh valde tincidunt ex quae ratis meus neo aliquam. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. Nibh valde tincidunt ex quae ratis meus neo aliquam. </p>
-    <a href="#">more info</a>
-</div>
-<div class="news">
-    <img src="~/assets/images/title3.gif" alt="" width="69" height="30" /><br />
-    <p>Illum secundum exerci erat plaga illum, enim, venio. Tamen causa ut diam torqueo sagaciter inhibeo si quae exerci lobortis. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. </p>
-</div>
+@*   <div class="about">
+        <img src="~/assets/images/title2.gif" alt="" width="191" height="30" /><br />
+        <p>Illum secundum exerci erat plaga illum, enim, venio. Tamen causa ut diam torqueo sagaciter inhibeo si quae exerci lobortis. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. Nibh valde tincidunt ex quae ratis meus neo aliquam. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. Nibh valde tincidunt ex quae ratis meus neo aliquam. </p>
+        <a href="#">more info</a>
+    </div>
+    <div class=news">
+        <img src="~/assets/images/title3.gif" alt="" width="69" height="30" /><br />
+        <p>Illum secundum exerci erat plaga illum, enim, venio. Tamen causa ut diam torqueo sagaciter inhibeo si quae exerci lobortis. Appellatio vel hos autem, ludus luptatum mauris ratis jugis interdico. Gilvus consequat abico demoveo lenis validus typicus ut commodo. Consequat, eu voco cui eros, euismod quis illum, commodo. </p>
+    </div>
+
+<br />*@
 
 
 <!-- Sale Products -->
+@*<div class="saleProduct">
+
+    <h2> Sale Products</h2>
+    <hr />
+</div>
+<div class="saleProduct">
+    
+    <ul>
+        @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Price  > 0).ToList())
+
+    </ul>
+
+</div>*@
+
+@*<div id="slider">
+    <div class="shell">
+        <ul>
+            @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Price  > 0).ToList())
+
+        </ul>
+    </div>
+</div>*@
+
 
 
 
 <!-- Hot Products -->
+@*<div class="hotProduct">
+    
+    <h2> Hot Products</h2>
+    <hr />
+</div>
+<div class="hotProduct">
+        <ul>
+    @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Rating >= 1).ToList())
+    </ul>
+</div>*@
 
 
 
 <!-- All Products -->
-<ul>
+<div class="items">
+    <br>
+    <h2> All Products</h2>
+    <hr />
+</div>
+<div class="items">
+    
+    <ul>
     @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Id > 0).ToList())
-</ul>
+    </ul>
+</div>
+
+
+
 
 
 

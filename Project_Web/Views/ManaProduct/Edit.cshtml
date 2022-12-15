@@ -70,26 +70,6 @@
                 <span asp-validation-for="BestSellers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HomeFlag" class="control-label"></label>
-                <input asp-for="HomeFlag" class="form-control" />
-                <span asp-validation-for="HomeFlag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Alias" class="control-label"></label>
-                <input asp-for="Alias" class="form-control" />
-                <span asp-validation-for="Alias" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Remains" class="control-label"></label>
                 <input asp-for="Remains" class="form-control" />
                 <span asp-validation-for="Remains" class="text-danger"></span>
@@ -110,3 +90,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

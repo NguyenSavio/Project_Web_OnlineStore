@@ -5,13 +5,12 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-<h1>List of Products</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" style="overflow:scroll;">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -29,7 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.Discount)
             </th>
             <th>
@@ -37,31 +36,19 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Video)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateCreate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateUpdate)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.BestSellers)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HomeFlag)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alias)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Remains)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
@@ -81,44 +68,32 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
+                @Html.DisplayFor(modelItem => item.Category.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-            @*<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Discount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                @*@Html.DisplayFor(modelItem => item.Image)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Video)
-            </td>*@
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateUpdate)
             </td>
-            @*<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BestSellers)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HomeFlag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Alias)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Remains)
-            </td>*@
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>

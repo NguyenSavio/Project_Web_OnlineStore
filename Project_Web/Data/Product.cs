@@ -14,18 +14,19 @@ namespace Project_Web.Data
         public Category? Category { get; set; }
         public double? Price { get; set; }
         public double? Discount { get; set; }
-        [MaxLength]
+        //[MaxLength]
         public string? Image { get; set; }
+
+        [NotMapped]
+        [FileExtensions]
+        public IFormFile? ImageUpload { get; set; }
         public string? Video { get; set; }
         public DateTime? DateCreate { get; set; }
         public DateTime? DateUpdate { get; set; }
         public bool? BestSellers { get; set; }
-        public bool? HomeFlag { get; set; }
-        public bool? Active { get; set; }
-        public string? Title { get; set; }
-        public string? Alias { get; set; }
+        
         public int? Remains { get; set; }
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
         public ICollection<OrderProduct>? OrderProducts { get; set; }
     }
 }

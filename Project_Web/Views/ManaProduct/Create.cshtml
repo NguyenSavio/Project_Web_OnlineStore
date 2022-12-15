@@ -5,48 +5,14 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Create Product</h1>
+<h1>Create</h1>
 
+<h4>Product</h4>
 <hr />
-
 <div class="row">
     <div class="col-md-4">
-
-        @*@using (Html.BeginForm("UploadImage", "ManaProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
-        }*@
-
-        <form method="post" asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-            @*<form method="post" enctype="multipart/form-data" asp-controller="ManaProduct" asp-action="UploadImage">
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <p>Upload image 2</p>
-                        <input class="form-control" name="files" type="file" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <input class="btn btn-success" type="submit" value="Upload" />
-                    </div>
-                </div>
-            </form>*@
-
-
-            @*<form asp-controller="ManaProduct" asp-action="UploadImage" method="post" ectype="multipart/form-data">
-                <div>
-                    <label>Upload File 1</label>
-                    <input type="file" class="form-control" name="Image" />
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary"> Load File</button>
-                </div>
-            </form>*@
-
-
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -64,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -79,12 +45,12 @@
 
 
 
-
-            @*<div class="form-group">
-            <label asp-for="Image" class="control-label"></label>
-            <input asp-for="Image" type="file" class="form-control" />
-            <span asp-validation-for="Image" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="ImageUpload" type="file" class="form-control" accept="image/*" />
+                <img id="imgpreview" class="pt-2" />
+                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+            </div>
 
 
 
@@ -110,26 +76,6 @@
                 <span asp-validation-for="BestSellers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HomeFlag" class="control-label"></label>
-                <input asp-for="HomeFlag" class="form-control" />
-                <span asp-validation-for="HomeFlag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Alias" class="control-label"></label>
-                <input asp-for="Alias" class="form-control" />
-                <span asp-validation-for="Alias" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Remains" class="control-label"></label>
                 <input asp-for="Remains" class="form-control" />
                 <span asp-validation-for="Remains" class="text-danger"></span>
@@ -140,7 +86,7 @@
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <button class="btn btn-primary" > Create</button>
             </div>
         </form>
     </div>
@@ -150,3 +96,14 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#ImageUpload").change(function () {
+            readURL(this);
+        });
+    </script>
+}

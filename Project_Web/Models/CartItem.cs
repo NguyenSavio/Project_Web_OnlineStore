@@ -2,7 +2,7 @@
 
 namespace Project_Web.Models
 {
-    public class CartSymbol
+    public class CartItem
     {
         public int Quantity { get; set; }
         public Product Product { get; set; }

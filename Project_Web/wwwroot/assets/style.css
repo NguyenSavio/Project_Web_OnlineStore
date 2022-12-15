@@ -1,6 +1,6 @@
 *{
 padding:0px;
-//margin:0px;
+margin:0px;
 }
 img{border:0px;}
 html{
@@ -29,8 +29,8 @@ position:relative;
 }
 #menu{
 position:absolute;
-top:141px;
-left:65px;
+top:156px;
+left:26px;
 }
 #menu li{
 display:inline;
@@ -60,14 +60,14 @@ padding:0 0 142px 0
 }
 #content_inside{
 background-image:url(images/bg.gif);
-background-position:top left;
+background-position:top right;
 background-repeat:no-repeat;
 width:1000px;
 margin:0 auto;
 overflow:hidden
 }
 #sidebar{
-width:140px;
+width:130px;
 float:left;
 padding:13px 32px 0 23px;
 }
@@ -75,12 +75,12 @@ padding:13px 32px 0 23px;
 list-style-type:none;
 margin:11px 0 0 0;
 line-height:18px;
-height:auto;
+height:18px;
 }
 #list a{
 font-family:Arial, Helvetica, sans-serif;
-font-size:11px;
-color:black; 
+font-size:12px;
+color:#464646;
 text-decoration:none
 }
 #list a:visited{text-decoration:none}
@@ -89,15 +89,15 @@ text-decoration:none
 width:165px;
 padding:0 0 0 10px;
 }
-.color {
-    background-color: #ECECC5 
+.color{
+background-color:#ECECC5
 }
 #main_block{
 font-family:Arial, Helvetica, sans-serif;
 font-size:11px;
 color:#464646;
 overflow:hidden;
-float:left;
+float:right;
 width:800px;
 }
 .about{
@@ -139,7 +139,8 @@ background-repeat:repeat-x;
 #items{
 float:left;
 padding:22px 0 0 0;
-width:770px;
+width:100%;
+position: relative;
 }
 .item{
 width:241px;
@@ -167,26 +168,26 @@ padding:0 0 0 20px;
 display:block;
 float:left;
 line-height:18px;
-margin:0px 3px 0 0;
+margin:3px 3px 0 0;
 width:41px;
 text-align:center;
 background-image:url(images/view_bg.gif);
 background-position:top left;
 background-repeat:no-repeat;
-color:/*#fff*/ white ;
+color:#fff;
 text-decoration:none
 }
 .buy{
 display:block;
 float:left;
 line-height:18px;
-margin:0px 3px 0 0;
+margin:3px 3px 0 0;
 width:92px;
 text-align:center;
 background-image:url(images/buy_bg.gif);
 background-position:top left;
 background-repeat:no-repeat;
-color:/*#CAFF34*/ white;
+color:#CAFF34;
 text-decoration:none
 }
 #footer_inside{
@@ -285,16 +286,16 @@ padding:0px;
 font-size:11px
 }
 
-table, thead,tbody, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 2px 2px 2px 2px;
-    position: center;
-    max-height:auto;
-    
-}
-.table-wrapper {
-    overflow-y: scroll;
-    overflow-x: scroll;
+#hotProduct {
+    float: left;
+    padding: 22px 0 0 0;
+    width: 100%;
+    position:relative;
 }
 
+#saleProduct {
+    float: left;
+    padding: 22px 0 0 0;
+    width: 100%;
+    position: relative;
+}
