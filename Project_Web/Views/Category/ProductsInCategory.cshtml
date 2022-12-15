@@ -1,7 +1,8 @@
 ﻿@model List<Project_Web.Data.Product>
 <!-- Products -->
 <div class="products">
-    <h3>@ViewBag.CategoryName</h3>
+    <h1>@ViewBag.CategoryName</h1>
+    <hr /><br />
     <ul>
         @Html.Partial("../Product/_ProductPartial", Model)
     </ul>

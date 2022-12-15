@@ -10,10 +10,28 @@
 }*@
 
 
-
-
-
 <li>
+    @for (int cate = 0; cate < Model.Count; cate++)
+    {
+        @if (cate % 2 == 0)
+        {
+
+        <li class="color">
+            <a href="/Category/ProductsInCategory/@Model[cate].Id">@Model[cate].Name</a>
+        </li>
+            
+        
+        }
+        else
+        {
+        <li><a href="/Category/ProductsInCategory/@Model[cate].Id">@Model[cate].Name</a></li>
+        }
+    }
+</li>
+
+
+
+@*<li>
     @for (int cate = 0; cate < Model.Count; cate++)
     {
         @if (cate % 2 == 0)
@@ -29,7 +47,7 @@
         </li>
         }
     }
-</li>
+</li>*@
 
 @*<li>
     @for (int cate = 0; cate < Model.Count; cate++)
