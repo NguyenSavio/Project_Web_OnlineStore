@@ -12,8 +12,8 @@ namespace Project_Web.Data
         public string? Description { get; set; }
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-        public double? Price { get; set; }
-        public double? Discount { get; set; }
+        public double Price { get; set; }
+        public double Discount { get; set; }
         //[MaxLength]
         public string? Image { get; set; }
 

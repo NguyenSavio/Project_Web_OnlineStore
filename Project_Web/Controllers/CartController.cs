@@ -21,12 +21,6 @@ namespace Project_Web.Controllers
             _userManager = userManager;
         }
 
-        // Hiện thị danh sách sản phẩm, có nút chọn đưa vào giỏ hàng
-        public IActionResult Index()
-        {
-            var products = _context.Products.ToList();
-            return View(products);
-        }
 
         /// Thêm sản phẩm vào cart
         [Route("addcart/{productid:int}", Name = "addcart")]
@@ -68,7 +62,6 @@ namespace Project_Web.Controllers
             var cartitem = cart.Find(p => p.Product.Id == productid);
             if (cartitem != null)
             {
-                // Đã tồn tại, tăng thêm 1
                 cart.Remove(cartitem);
             }
 
@@ -101,19 +94,20 @@ namespace Project_Web.Controllers
         {
             return View(GetCartItems());
         }
-        public ActionResult Shopping_Success()
+        public ActionResult OrderSuccess()
         {
             return View();
         }
+
         [Authorize]
         [Route("/checkout", Name = "checkout")]
-        public async Task<IActionResult> CheckOut(string id, decimal total)
+        public async Task<IActionResult> CheckOut(string id, double total)
         {
             var cart = GetCartItems();
             Order _order = new Order();
             _order.CreatedAt = DateTime.Now;
             var user = await _userManager.FindByIdAsync(id);
-
+            
             _order.ShippingAddress = user.Address;
             _order.UserId = user.Id;
             _order.Total = total;
@@ -135,7 +129,7 @@ namespace Project_Web.Controllers
             _context.SaveChanges();
             cart.Clear();
             ClearCart();
-            return RedirectToAction("Shopping_Success", "ShoppingCart");
+            return RedirectToAction("OrderSuccess", "Cart");
             // Xử lý khi đặt hàng
 
         }
@@ -170,5 +164,8 @@ namespace Project_Web.Controllers
             string jsoncart = JsonConvert.SerializeObject(ls);
             session.SetString(CARTKEY, jsoncart);
         }
+
+
+
     }
 }

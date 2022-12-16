@@ -8,13 +8,14 @@ namespace Project_Web.Data
     {
         public int Id { get; set; }
         [StringLength(450)]
-        public string UserId { get; set; } = null;
+        public string? UserId { get; set; }
         public string? Status { get; set; }
         public string? ShippingAddress { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int? QuanityTotal { get; set; }
         [Column(TypeName = "decimal(18,2)")]
-        public Decimal? Total { get; set; }
+        public double? Total { get; set; }
+        public string? UserName { get; set; }
         public ICollection<OrderProduct>? OrderProducts { get; set; }
         
     }

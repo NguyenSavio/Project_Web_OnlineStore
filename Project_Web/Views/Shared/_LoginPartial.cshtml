@@ -1,9 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Project_Web.Data
-        
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    string jsoncart = session.GetString(Project_Web.Controllers.CartController.CARTKEY);
+
+}
 
 @*<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
@@ -36,7 +44,7 @@ else
 
 @if (SignInManager.IsSignedIn(User))
 {
-    @if (User.IsInRole("Administrator"))
+    @if (User.IsInRole("Administrator")) //cho trang admin
     {
         <a class="but1" asp-controller="Admin" asp-action="index">For Admin</a>
     } 
@@ -46,11 +54,32 @@ else
         
     }
     <a class="but1" id="logout" asp-controller="User" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"> Logout </a>
-            
+    @if (jsoncart != null)
+    {
+        var cart = JsonConvert.DeserializeObject<List<CartItem>>(jsoncart);
+        <a asp-route="cart" class="cart">Shopping Cart (@cart.Count) </a>
+    }
+    else
+    {
+        <a asp-route="cart" class="cart">Shopping Cart (0)</a>
+    }
+
+
+
+
+
 } else{
     <a class="but1" id="register" asp-controller="User" asp-action="Register">Register</a>
     <a class="but1" id="login" asp-controller="User" asp-action="Login">Login</a>
-    
+    @if (jsoncart != null)
+    {
+        var cart = JsonConvert.DeserializeObject<List<CartItem>>(jsoncart);
+        <a asp-route="cart" class="cart">Shopping Cart (@cart.Count) </a>
+    }
+    else
+    {
+        <a asp-route="cart" class="cart">Shopping Cart (0)</a>
+    }
 }
 
         @*<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @UserManager.GetUserName(User)!</a>

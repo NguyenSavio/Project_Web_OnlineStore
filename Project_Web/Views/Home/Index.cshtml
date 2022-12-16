@@ -28,20 +28,9 @@
 
 
 <div id="items">
-    @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Price  > 0).ToList())
+    @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Discount  > 0).ToList())
 
 </div>
-
-
-
-@*<div id="slider">
-    <div class="shell">
-        <ul>
-            @Html.Partial("../Product/_ProductPartial", Model.Where(Model => Model.Price  > 0).ToList())
-
-        </ul>
-    </div>
-</div>*@
 
 
 
