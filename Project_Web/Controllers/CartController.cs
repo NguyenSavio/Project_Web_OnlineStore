@@ -110,6 +110,7 @@ namespace Project_Web.Controllers
             
             _order.ShippingAddress = user.Address;
             _order.UserId = user.Id;
+            _order.UserName = user.UserName;
             _order.Total = total;
             _context.Orders.Add(_order);
             _context.SaveChanges();
@@ -120,6 +121,7 @@ namespace Project_Web.Controllers
                 _OrderDetail.ProductId = item.Product.Id;
                 _OrderDetail.OrderId = _order.Id;
                 _OrderDetail.Quantity = item.Quantity;
+                var priceDiscount = item.Product.Price - (item.Product.Price * (item.Product.Discount / 100));
                 //Tinh tong so luong cho Order
                 //quanityTotal += item.Quantity;
                 _OrderDetail.Price = item.Product.Price * item.Quantity;

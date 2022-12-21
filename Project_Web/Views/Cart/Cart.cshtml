@@ -7,9 +7,12 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    Layout = "_Layout";
 
+}
+<!-- CSS only -->
+@*<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>*@
+<link rel="stylesheet" type="text/css" href="~/assets/style.css" />
 
 <h2>GIỎ HÀNG</h2>
 
@@ -21,11 +24,11 @@
     <table class="table">
         <tr>
             <th>#</th>
-            <th>Sản phẩm</th>
-            <th>Giá</th>
-            <th>Giá giảm</th>
-            <th>Số lượng</th>
-            <th>Thành tiền</th>
+            <th>Products</th>
+            <th>Original Price</th>
+            <th>Discount</th>
+            <th>Quantity</th>
+            <th>New Price</th>
             <th></th>
         </tr>
         @foreach (var cartitem in Model)
@@ -34,14 +37,16 @@
     {
     cartitem.Quantity = 0;
     }*@
-            var thanhtien = (double)cartitem.Quantity * (cartitem.Product.Price - (cartitem.Product.Price * (cartitem.Product.Discount / 100)));
+            var priceDiscount = cartitem.Product.Price - (cartitem.Product.Price * (cartitem.Product.Discount / 100));
+            var thanhtien = (double)cartitem.Quantity * priceDiscount; 
+            @*(cartitem.Product.Price - (cartitem.Product.Price * (cartitem.Product.Discount / 100)));*@
             total += thanhtien;
 
             <tr>
                 <td>@(stt++)</td>
                 <td>@cartitem.Product.Name</td>
                 <td>@(cartitem.Product.Price.ToString())$</td>
-                <td>@(cartitem.Product.Discount.ToString())$</td>
+                <td>@(cartitem.Product.Discount.ToString())%</td>
                 <td><input asp-for="@cartitem.Quantity" id="@($"quantity-{cartitem.Product.Id}")" /></td>
                 <td>@(thanhtien.ToString())$</td>
                 <td>
@@ -57,11 +62,33 @@
             <td>@(total.ToString("n0"))$</td>
             <td></td>
         </tr>
-    </table>
+    </table> <br />
 
     //AJAX Button
-    <a asp-route="checkout" asp-route-id="@UserManager.GetUserId(User)" asp-route-total="@total" class="btn btn-success">Thanh toán</a>
+   
+        <a asp-route="checkout" asp-route-id="@UserManager.GetUserId(User)" asp-route-total="@total" class="but1">Thanh toán</a>
 
+    @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
     <a asp-controller="Home" asp-action="Index" class="btn btn-info">Tiếp tục mua hàng</a>
     @section Scripts {
     <script>
@@ -91,3 +118,9 @@ else
 {
     <p class="alert alert-danger">Giỏ hàng trống</p>
 }
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
+</script>

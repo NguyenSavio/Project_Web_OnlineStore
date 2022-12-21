@@ -35,6 +35,9 @@
     </dl>
 </div>
 *@
+@{
+    double priceDiscount = Model.Price - (Model.Price * (Model.Discount / 100));
+}
 <h1>Details of a Product</h1>
 <div id="main_block" class="style1">
     <div id="item">
@@ -44,17 +47,33 @@
             <img src="@Html.DisplayFor(model => model.Image)" alt="" width="311" height="319" /><br />
             <span></span>
         </div>
-        <div class="scroll">
+        @*<div class="scroll">
             <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
             <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
             <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
             <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
             <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
             <a href="#"><img src="~/assets/images/pic1.jpg" alt="" width="62" height="62" /></a>
-        </div>
+        </div>*@
         <div>
-            <h1 style="color: red"> $@Html.DisplayFor(model => model.Price)</h1> <br />
-            <a href="#" class="view">View</a>
+            @if (Model.Discount > 0)
+            {
+                <h2 style="text-align: left; ">
+                    <del style="text-decoration:line-through;">$@Model.Price</del>
+                    <strong> -@Model.Discount%</strong>
+                    
+                </h2>
+                <h1 style="color: red">$@priceDiscount</h1> <br />
+            }
+            else
+            {
+                <h1 style="color: red">$@priceDiscount</h1> <br />
+                
+            }
+            
+           @* <h1 style="color: red"> $@Html.DisplayFor(model => model.Price)</h1> <br />
+            <h1 style="color: red"> $@priceDiscount</h1><br />*@
+            @*<a href="#" class="view">View</a>*@
             <a asp-route="addcart" asp-route-productid="@Model.Id" class="buy"><strong>Add to Cart</strong> </a>
         </div>
     </div>
