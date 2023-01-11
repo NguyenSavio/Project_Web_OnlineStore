@@ -124,7 +124,7 @@ namespace Project_Web.Controllers
                 var priceDiscount = item.Product.Price - (item.Product.Price * (item.Product.Discount / 100));
                 //Tinh tong so luong cho Order
                 //quanityTotal += item.Quantity;
-                _OrderDetail.Price = item.Product.Price * item.Quantity;
+                _OrderDetail.Price = priceDiscount * item.Quantity;
                 _context.OrderProducts.Add(_OrderDetail);
             }
             //_order.QuanityTotal = quanityTotal;

@@ -68,7 +68,7 @@
    
         <a asp-route="checkout" asp-route-id="@UserManager.GetUserId(User)" asp-route-total="@total" class="but1">Thanh toán</a>
 
-    @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
         Launch demo modal
     </button>
 
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
     <a asp-controller="Home" asp-action="Index" class="btn btn-info">Tiếp tục mua hàng</a>
     @section Scripts {
     <script>
@@ -106,11 +106,17 @@
                     },
                     success: function (result) {
                         window.location.href = "@Url.RouteUrl("cart")";
-                    }
+                    }   
                 });
             });
         });
     </script>
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').focus()
+        })
+    </script>
+
       }
 
 }
@@ -119,8 +125,8 @@ else
     <p class="alert alert-danger">Giỏ hàng trống</p>
 }
 
-<script>
+@*<script>
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').focus()
     })
-</script>
+</script>*@
